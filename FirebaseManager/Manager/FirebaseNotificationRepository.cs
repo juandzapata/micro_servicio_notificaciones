@@ -11,7 +11,6 @@ namespace FirebaseManager.Manager
         {
             try
             {
-                message.RegistrationIds = getDevices();
                 FirebaseApp defaultApp = FirebaseApp.DefaultInstance;
                 if (defaultApp == null)
                 {
@@ -48,11 +47,6 @@ namespace FirebaseManager.Manager
             {
                 return false;
             }
-        }
-
-        string[] getDevices()
-        {
-            return new string[] { "dsnvsSHOSf-xQeeUJCI0qR:APA91bGLzPwx43LAqUQXI2r8ft1XqyDFkKl6OhSlZL6lhOsTPp12yMdtlVePWFExKqbFzvYCFy5VXiQZETjTPEfrLKLp3ZuQwejkyLuBhsim1jr4JIlEnF1TZcVDvXJV4ik98L99uauq" };
         }
     }
 }
