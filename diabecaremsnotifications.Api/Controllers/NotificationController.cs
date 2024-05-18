@@ -25,7 +25,8 @@ namespace diabecaremsnotifications.Api.Controllers
         [HttpGet("sendToken/{token}")]
         public IActionResult SendToken(string token)
         {
-            return token != default && token != string.Empty ? Ok(new CustomResponse<bool>(true, "Token registrado")) : BadRequest();
+            return Ok(new CustomResponse<bool>(true, $" {token}" +
+                "Token registrado"));
         }
     }
 }

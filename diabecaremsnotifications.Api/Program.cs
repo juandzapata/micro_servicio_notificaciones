@@ -12,6 +12,19 @@ builder.Services.AddSwaggerGen();
 
 builder.Inject();
 
+// Configurar CORS
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(builder =>
+    {
+
+        builder.WithOrigins("http://localhost:8100")
+               .AllowAnyOrigin()
+               .AllowAnyHeader()
+               .AllowAnyMethod();
+    });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
