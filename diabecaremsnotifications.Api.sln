@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34902.65
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "diabecaremsnotifications.Api", "diabecaremsnotifications.Api\diabecaremsnotifications.Api.csproj", "{960E3FD6-5F8D-47BF-A862-20CB0AC1541E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FirebaseManager", "FirebaseManager\FirebaseManager.csproj", "{9415B9AD-5F0C-4080-B95D-13F0D8AFBA04}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{960E3FD6-5F8D-47BF-A862-20CB0AC1541E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{960E3FD6-5F8D-47BF-A862-20CB0AC1541E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{960E3FD6-5F8D-47BF-A862-20CB0AC1541E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{960E3FD6-5F8D-47BF-A862-20CB0AC1541E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9415B9AD-5F0C-4080-B95D-13F0D8AFBA04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9415B9AD-5F0C-4080-B95D-13F0D8AFBA04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9415B9AD-5F0C-4080-B95D-13F0D8AFBA04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9415B9AD-5F0C-4080-B95D-13F0D8AFBA04}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {91E497E7-78BC-40ED-B392-719B77B41BA0}
+	EndGlobalSection
+EndGlobal
