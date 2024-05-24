@@ -1,7 +1,7 @@
-﻿using FirebaseAdmin;
+﻿using Google.Apis.Auth.OAuth2;
+using FirebaseAdmin;
 using FirebaseAdmin.Messaging;
 using FirebaseManager.Dtos;
-using Google.Apis.Auth.OAuth2;
 
 namespace FirebaseManager.Manager
 {
@@ -14,9 +14,10 @@ namespace FirebaseManager.Manager
                 FirebaseApp defaultApp = FirebaseApp.DefaultInstance;
                 if (defaultApp == null)
                 {
+                    string keyFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "key.json");
                     defaultApp = FirebaseApp.Create(new AppOptions()
                     {
-                        Credential = GoogleCredential.FromFile("C:\\Users\\Asus\\Desktop\\TOMANSY\\PROYECTOS\\diabecaremsnotifications.Api\\FirebaseManager\\key.json")
+                        Credential = GoogleCredential.FromFile(keyFilePath)
                     });
                 }
                 Console.WriteLine(defaultApp.Name);
