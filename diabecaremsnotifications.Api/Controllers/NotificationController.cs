@@ -16,9 +16,9 @@ namespace diabecaremsnotifications.Api.Controllers
         }
 
         [HttpPost("sendNotification")]
-        public async Task<IActionResult> Send(MessageDto message)
+        public IActionResult Send(MessageDto message)
         {
-            bool result = await _notificationRepository.SendPushNotification(message);
+            bool result =  _notificationRepository.SendPushNotification(message);
             return result ? Ok(result) : BadRequest();
         }
 

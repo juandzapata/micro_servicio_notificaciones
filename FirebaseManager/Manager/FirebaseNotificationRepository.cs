@@ -7,47 +7,54 @@ namespace FirebaseManager.Manager
 {
     public class FirebaseNotificationRepository : IFirebaseNotificationRepository
     {
-        public async Task<bool> SendPushNotification(MessageDto message)
+        public bool SendPushNotification(MessageDto message)
+        {
+            FirebaseApp defaultApp = FirebaseApp.DefaultInstance;
+            defaultApp = CreateApp(defaultApp);
+            return SendMessages(defaultApp, message);
+        }
+
+        private bool SendMessages(FirebaseApp defaultApp, MessageDto message)
         {
             try
             {
-                FirebaseApp defaultApp = FirebaseApp.DefaultInstance;
-                if (defaultApp == null)
-                {
-                    string keyFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "key.json");
-                    defaultApp = FirebaseApp.Create(new AppOptions()
-                    {
-                        Credential = GoogleCredential.FromFile(keyFilePath)
-                    });
-                }
-                Console.WriteLine(defaultApp.Name);
-
                 FirebaseMessaging firebaseMessaging = FirebaseMessaging.GetMessaging(defaultApp);
-                foreach (var device in message.RegistrationIds)
-                {
-                    var result = await firebaseMessaging.SendAsync(new Message()
-                    {
-                        Data = new Dictionary<string, string>()
-                        {
-                            ["FirstName"] = message.Name,
-                            ["LastName"] = message.FullName
-                        },
-                        Notification = new Notification()
-                        {
-                            Title = message.Notification.Title,
-                            Body = message.Notification.Body,
-                        },
-                        Token = device
-                    });
-
-                    Console.WriteLine(result); //projects/projectId/messages/0:messageId
-                }
+                message.RegistrationIds.ToList().ForEach(async device => await firebaseMessaging.SendAsync(BuildMessageForDevice(message, device)));
                 return true;
             }
-            catch
+            catch { return false; }
+        }
+
+        private FirebaseApp CreateApp(FirebaseApp defaultApp)
+        {
+            if (defaultApp == null)
             {
-                return false;
+                string keyFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "key.json");
+                return FirebaseApp.Create(new AppOptions()
+                {
+                    Credential = GoogleCredential.FromFile(keyFilePath)
+                });
             }
+
+            return defaultApp;
+        }
+
+        private Message BuildMessageForDevice(MessageDto message, string device)
+        {
+            return new Message()
+            {
+                Data = new Dictionary<string, string>()
+                {
+                    ["FirstName"] = message.Name,
+                    ["LastName"] = message.FullName
+                },
+                Notification = new Notification()
+                {
+                    Title = message.Notification.Title,
+                    Body = message.Notification.Body,
+                },
+                Token = device
+            };
         }
     }
 }

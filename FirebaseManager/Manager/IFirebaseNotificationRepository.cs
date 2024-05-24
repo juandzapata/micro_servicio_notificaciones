@@ -4,6 +4,6 @@ namespace FirebaseManager.Manager
 {
     public interface IFirebaseNotificationRepository
     {
-        public Task<bool> SendPushNotification(MessageDto message);
+        public bool SendPushNotification(MessageDto message);
     }
 }
