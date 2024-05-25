@@ -365,3 +365,4 @@ FodyWeavers.xsd
 key.json
 /FirebaseManager/key.json
 /diabecaremsnotifications.Api/appsettings.json
+/diabecaremsnotifications.Api/appsettings.Development.json

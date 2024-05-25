@@ -50,8 +50,8 @@ namespace FirebaseManager.Manager
         private GoogleCredential GetGoogleCredentials()
         {
             Console.WriteLine(Environment.GetEnvironmentVariable("TEST_VARIABLE"));
-            string keyJson = Environment.GetEnvironmentVariable("FIREBASE_KEY");
-            return GoogleCredential.FromJson(keyJson);
+            string keyFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "key.json");
+            return GoogleCredential.FromFile(keyFilePath);
         }
     }
 }
