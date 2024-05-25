@@ -22,9 +22,17 @@ namespace diabecaremsnotifications.Api.Controllers
         [HttpPost("sendNotification")]
         public IActionResult Send(MessageDto message)
         {
-            bool result =  _notificationRepository.SendPushNotification(message);
-            Console.WriteLine(result);
-            return result ? Ok(result) : BadRequest();
+            try
+            {
+                bool result = _notificationRepository.SendPushNotification(message);
+                Console.WriteLine(result);
+                return Ok(result); 
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { ex.Message , Ex = ex});
+            }
+            
         }
 
         [HttpGet("sendToken/{token}")]
