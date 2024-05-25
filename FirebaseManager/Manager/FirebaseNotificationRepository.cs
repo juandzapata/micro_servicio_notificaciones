@@ -3,6 +3,7 @@ using FirebaseAdmin;
 using FirebaseAdmin.Messaging;
 using FirebaseManager.Dtos;
 
+
 namespace FirebaseManager.Manager
 {
     public class FirebaseNotificationRepository : IFirebaseNotificationRepository
@@ -25,19 +26,8 @@ namespace FirebaseManager.Manager
             catch { return false; }
         }
 
-        private FirebaseApp CreateApp(FirebaseApp defaultApp)
-        {
-            if (defaultApp == null)
-            {
-                string keyFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "key.json");
-                return FirebaseApp.Create(new AppOptions()
-                {
-                    Credential = GoogleCredential.FromFile(keyFilePath)
-                });
-            }
-
-            return defaultApp;
-        }
+        private FirebaseApp CreateApp(FirebaseApp defaultApp) =>
+            defaultApp ?? FirebaseApp.Create(new AppOptions() { Credential = GetGoogleCredentials() });
 
         private Message BuildMessageForDevice(MessageDto message, string device)
         {
@@ -55,6 +45,13 @@ namespace FirebaseManager.Manager
                 },
                 Token = device
             };
+        }
+
+        private GoogleCredential GetGoogleCredentials()
+        {
+            Console.WriteLine(Environment.GetEnvironmentVariable("TEST_VARIABLE"));
+            string keyJson = Environment.GetEnvironmentVariable("FIREBASE_KEY");
+            return GoogleCredential.FromJson(keyJson);
         }
     }
 }
