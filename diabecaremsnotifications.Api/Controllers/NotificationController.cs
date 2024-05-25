@@ -37,7 +37,6 @@ namespace diabecaremsnotifications.Api.Controllers
         [HttpGet("getAmbiente")]
         public IActionResult GetAmbiente()
         {
-
             var menssage = _configuration.GetValue<String>("EnvironmentVariable");
             var environment = _webHostEnvironment.EnvironmentName;
             return Ok(new {Message = menssage, CurrentEnvironment = environment});

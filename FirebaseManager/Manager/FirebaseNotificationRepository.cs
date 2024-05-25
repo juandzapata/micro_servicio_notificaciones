@@ -59,7 +59,6 @@ namespace FirebaseManager.Manager
         private GoogleCredential GetGoogleCredentials()
         {
             var firebaseJsonKey = GetFirebaseJsonKey();
-            string keyFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "key.json");
             return GoogleCredential.FromJson(firebaseJsonKey);
         }
 
