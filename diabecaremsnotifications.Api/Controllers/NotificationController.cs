@@ -9,10 +9,14 @@ namespace diabecaremsnotifications.Api.Controllers
     public class NotificationController : ControllerBase
     {
         private readonly IFirebaseNotificationRepository _notificationRepository;
+        private readonly IConfiguration _configuration;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public NotificationController(IFirebaseNotificationRepository notificationRepository)
+        public NotificationController(IFirebaseNotificationRepository notificationRepository, IConfiguration configuration, IWebHostEnvironment webHostEnvironment)
         {
             _notificationRepository = notificationRepository;
+            _configuration = configuration;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         [HttpPost("sendNotification")]
@@ -29,5 +33,15 @@ namespace diabecaremsnotifications.Api.Controllers
             return Ok(new CustomResponse<bool>(true, $" {token}" +
                 "Token registrado"));
         }
+
+        [HttpGet("getAmbiente")]
+        public IActionResult GetAmbiente()
+        {
+
+            var menssage = _configuration.GetValue<String>("EnvironmentVariable");
+            var environment = _webHostEnvironment.EnvironmentName;
+            return Ok(new {Message = menssage, CurrentEnvironment = environment});
+        }
+
     }
 }

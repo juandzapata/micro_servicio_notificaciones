@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34902.65
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "diabecaremsnotifications.Api", "diabecaremsnotifications.Api\diabecaremsnotifications.Api.csproj", "{960E3FD6-5F8D-47BF-A862-20CB0AC1541E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "diabecaremsnotifications.Api", "diabecaremsnotifications.Api\diabecaremsnotifications.Api.csproj", "{960E3FD6-5F8D-47BF-A862-20CB0AC1541E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FirebaseManager", "FirebaseManager\FirebaseManager.csproj", "{9415B9AD-5F0C-4080-B95D-13F0D8AFBA04}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FirebaseManager", "FirebaseManager\FirebaseManager.csproj", "{9415B9AD-5F0C-4080-B95D-13F0D8AFBA04}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

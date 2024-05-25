@@ -366,3 +366,6 @@ key.json
 /FirebaseManager/key.json
 /diabecaremsnotifications.Api/appsettings.json
 /diabecaremsnotifications.Api/appsettings.Development.json
+/.env
+/diabecaremsnotifications.Api/.env
+/diabecaremsnotifications.Api/appsettings.Production.json

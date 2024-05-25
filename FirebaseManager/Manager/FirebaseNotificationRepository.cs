@@ -2,12 +2,21 @@
 using FirebaseAdmin;
 using FirebaseAdmin.Messaging;
 using FirebaseManager.Dtos;
+using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 
 
 namespace FirebaseManager.Manager
 {
     public class FirebaseNotificationRepository : IFirebaseNotificationRepository
     {
+        private IConfiguration _configuration;
+
+        public FirebaseNotificationRepository(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
+
         public bool SendPushNotification(MessageDto message)
         {
             FirebaseApp defaultApp = FirebaseApp.DefaultInstance;
@@ -49,9 +58,33 @@ namespace FirebaseManager.Manager
 
         private GoogleCredential GetGoogleCredentials()
         {
-            Console.WriteLine(Environment.GetEnvironmentVariable("TEST_VARIABLE"));
+            var firebaseJsonKey = GetFirebaseJsonKey();
             string keyFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "key.json");
-            return GoogleCredential.FromFile(keyFilePath);
+            return GoogleCredential.FromJson(firebaseJsonKey);
+        }
+
+        private string GetFirebaseJsonKey()
+        {
+            var diccionary = GetDictioanry();
+            return  JsonConvert.SerializeObject(diccionary, Formatting.Indented);
+        }
+
+        private Dictionary<string, string> GetDictioanry()
+        {
+            return new Dictionary<string, string>()
+            {
+                { "type", _configuration.GetSection("type").Value },
+                { "project_id",  _configuration.GetSection("project_id").Value },
+                { "private_key_id",  _configuration.GetSection("private_key_id").Value },
+                { "private_key", _configuration.GetSection("private_key").Value },
+                { "client_email",  _configuration.GetSection("client_email").Value },
+                { "client_id", _configuration.GetSection("client_id").Value },
+                { "auth_uri", _configuration.GetSection("auth_uri").Value },
+                { "token_uri", _configuration.GetSection("token_uri").Value },
+                { "auth_provider_x509_cert_url", _configuration.GetSection("auth_provider_x509_cert_url").Value },
+                { "client_x509_cert_url",  _configuration.GetSection("client_x509_cert_url").Value },
+                { "universe_domain", _configuration.GetSection("universe_domain").Value }
+            };
         }
     }
 }
