@@ -19,6 +19,7 @@ namespace diabecaremsnotifications.Api.Controllers
         public IActionResult Send(MessageDto message)
         {
             bool result =  _notificationRepository.SendPushNotification(message);
+            Console.WriteLine(result);
             return result ? Ok(result) : BadRequest();
         }
 
